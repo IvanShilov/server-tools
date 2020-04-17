@@ -16,7 +16,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
         self.fetchmail_server = self.env["fetchmail.server"].create(
             {
                 "name": "Test Fetchmail Server",
-                "type": "imap",
+                "server_type": "imap",
                 "error_notice_template_id": self.env.ref(
                     "%s.%s"
                     % (
@@ -71,7 +71,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
                 subject="spam",
                 extra="In-Reply-To: <12321321-openerp-%d-mail.test.simple@%s"
                 ">" % (self.test_record.id, socket.gethostname(),),
-                ctx={"fetchmail_server_id": self.fetchmail_server.id,},
+                ctx={"default_fetchmail_server_id": self.fetchmail_server.id,},
             )
 
         count_return_mails_after = self.env["mail.mail"].search_count(

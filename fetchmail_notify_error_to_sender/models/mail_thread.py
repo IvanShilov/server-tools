@@ -22,7 +22,7 @@ class MailThread(models.AbstractModel):
                 custom_values=custom_values,
             )
         except ValueError as ve:
-            fetchmail_server_id = self.env.context.get("fetchmail_server_id")
+            fetchmail_server_id = self.env.context.get("default_fetchmail_server_id")
             if not fetchmail_server_id:
                 raise ve
             fetchmail_server = (
